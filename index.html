@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LizardOS - Desktop Environment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo">🦎</div>
+            <h1 class="boot-title">LizardOS</h1>
+            <div class="boot-progress">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="boot-text">Starting your desktop...</p>
+        </div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="desktop" class="desktop hidden">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-app="file-manager">
+                <div class="icon-image">📁</div>
+                <div class="icon-label">File Manager</div>
+            </div>
+            <div class="desktop-icon" data-app="settings">
+                <div class="icon-image">⚙️</div>
+                <div class="icon-label">Settings</div>
+            </div>
+            <div class="desktop-icon" data-app="calculator">
+                <div class="icon-image">🔢</div>
+                <div class="icon-label">Calculator</div>
+            </div>
+            <div class="desktop-icon" data-app="text-editor">
+                <div class="icon-image">📝</div>
+                <div class="icon-label">Text Editor</div>
+            </div>
+            <div class="desktop-icon" data-app="web-browser">
+                <div class="icon-image">🌐</div>
+                <div class="icon-label">Web Browser</div>
+            </div>
+            <div class="desktop-icon" data-app="games">
+                <div class="icon-image">🎮</div>
+                <div class="icon-label">Games</div>
+            </div>
+        </div>
+
+        <!--Windows Container -->
+        <div id="windowsContainer" class="windows-container"></div>
+
+        <!-- Context Menu -->
+        <div id="contextMenu" class="context-menu hidden">
+            <div class="context-item" data-action="refresh">Refresh</div>
+            <div class="context-item" data-action="new-folder">New Folder</div>
+            <div class="context-item" data-action="paste">Paste</div>
+            <hr class="context-separator">
+            <div class="context-item" data-action="settings">Display Settings</div>
+        </div>
+
+        <!-- Start Menu -->
+        <div id="startMenu" class="start-menu hidden">
+            <div class="start-header">
+                <div class="user-profile">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-info">
+                        <div class="user-name">User</div>
+                        <div class="user-status">Administrator</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="start-search">
+                <input type="text" placeholder="Search apps and files..." id="startSearch">
+            </div>
+            
+            <div class="start-content">
+                <div class="start-section">
+                    <h3>Pinned</h3>
+                    <div class="start-apps-grid">
+                        <div class="start-app" data-app="file-manager">
+                            <div class="start-app-icon">📁</div>
+                            <div class="start-app-name">File Manager</div>
+                        </div>
+                        <div class="start-app" data-app="web-browser">
+                            <div class="start-app-icon">🌐</div>
+                            <div class="start-app-name">Web Browser</div>
+                        </div>
+                        <div class="start-app" data-app="settings">
+                            <div class="start-app-icon">⚙️</div>
+                            <div class="start-app-name">Settings</div>
+                        </div>
+                        <div class="start-app" data-app="calculator">
+                            <div class="start-app-icon">🔢</div>
+                            <div class="start-app-name">Calculator</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="start-section">
+                    <h3>All Apps</h3>
+                    <div class="start-apps-list">
+                        <div class="start-app-item" data-app="calculator">🔢 Calculator</div>
+                        <div class="start-app-item" data-app="file-manager">📁 File Manager</div>
+                        <div class="start-app-item" data-app="games">🎮 Games</div>
+                        <div class="start-app-item" data-app="settings">⚙️ Settings</div>
+                        <div class="start-app-item" data-app="task-manager">📊 Task Manager</div>
+                        <div class="start-app-item" data-app="text-editor">📝 Text Editor</div>
+                        <div class="start-app-item" data-app="web-browser">🌐 Web Browser</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="start-footer">
+                <button class="power-btn" data-action="shutdown">⏻ Shutdown</button>
+                <button class="power-btn" data-action="restart">🔄 Restart</button>
+            </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div id="taskbar" class="taskbar">
+            <div class="taskbar-left">
+                <button id="startButton" class="start-button">
+                    <span class="start-logo">🦎</span>
+                    <span class="start-text">LizardOS</span>
+                </button>
+            </div>
+            
+            <div class="taskbar-center">
+                <div id="taskbarApps" class="taskbar-apps">
+                    <button class="taskbar-app pinned" data-app="file-manager" title="File Manager">📁</button>
+                    <button class="taskbar-app pinned" data-app="web-browser" title="Web Browser">🌐</button>
+                    <button class="taskbar-app pinned" data-app="settings" title="Settings">⚙️</button>
+                    <button class="taskbar-app pinned" data-app="calculator" title="Calculator">🔢</button>
+                </div>
+            </div>
+            
+            <div class="taskbar-right">
+                <div class="system-tray">
+                    <div class="tray-icon" title="Volume">🔊</div>
+                    <div class="tray-icon" title="Network">📶</div>
+                    <div class="tray-icon" title="Notifications">🔔</div>
+                    <div class="system-time">
+                        <div id="currentTime" class="time">7:00 PM</div>
+                        <div id="currentDate" class="date">9/19/2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Area -->
+        <div id="notifications" class="notifications"></div>
+    </div>
+
+    <!-- Window Switcher (Alt+Tab) -->
+    <div id="windowSwitcher" class="window-switcher hidden">
+        <div class="switcher-content"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
